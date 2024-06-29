@@ -1,0 +1,17 @@
+//update sender list
+function DeleteMails() {
+  const SenderList=["communications@smsfoundation.org","jobs-listings@linkedin.com","linkedin@e.linkedin.com","alert@indeed.com","info@mc.shiningindiaa.com","hello@email.ine.com"];
+  const inbox_threads=GmailApp.getInboxThreads(1,500);
+  for (var i = 0; i < inbox_threads.length; i++) {
+  var messages = inbox_threads[i].getMessages();
+  var message= messages[0];
+  var fromr = message.getFrom();
+  for (var j = 0; j < SenderList.length; j++) {
+    if(fromr.includes(SenderList[j])) {
+      inbox_threads[i].moveToTrash();
+      console.log("Deleted mail from  : "+fromr);
+    }  
+  }
+  }
+}
+
